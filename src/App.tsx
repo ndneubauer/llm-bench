@@ -3,6 +3,8 @@ import { ModelList } from "./components/ModelList";
 import "./App.css";
 import { FilterPanel } from "./components/FilterPanel";
 import { models } from "./models";
+import { EmptyState } from "./components/EmptyState";
+import { SearchSummary } from "./components/SearchSummary";
 
 function App() {
   const title = "LLM Bench";
@@ -71,7 +73,25 @@ function App() {
         onClearFilters={handleClearFilters}
         models={models}
       />
-      <ModelList models={searchedModels} modelFilter={modelFilter} />
+      <SearchSummary
+        count={searchedModels.length}
+        total={models.length}
+        bestScore={Math.max(...searchedModels.map((m) => m.score))}
+        jsonPassRate={
+          searchedModels.length > 0
+            ? Math.round(
+                (searchedModels.filter((m) => m.jsonPass).length /
+                  searchedModels.length) *
+                  100,
+              )
+            : 0
+        }
+      />
+      {searchedModels.length === 0 ? (
+        <EmptyState />
+      ) : (
+        <ModelList models={searchedModels} modelFilter={modelFilter} />
+      )}
       <div className="pre-icon-tiny disclaimer">
         All tests run locally on your machine.
       </div>

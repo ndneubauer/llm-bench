@@ -547,3 +547,74 @@ h2 {
     grid-column: 1;
   }
 }
+
+.search-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #dbe3ec;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 10px 28px rgba(15, 23, 42, 0.055),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  color: #526173;
+  font-size: 0.96rem;
+}
+
+.search-summary .pre-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.search-summary .pre-icon:nth-child(2) {
+  justify-content: center;
+}
+
+.search-summary .pre-icon:nth-child(3) {
+  justify-content: flex-end;
+}
+
+.search-summary strong {
+  color: #0f172a;
+  font-weight: 850;
+}
+
+.search-summary .pre-icon::before {
+  display: inline-grid;
+  width: 1.35rem;
+  height: 1.35rem;
+  place-items: center;
+  flex: none;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.search-summary .pre-icon.list::before {
+  content: "☰";
+  font-size: 0.92rem;
+}
+
+.search-summary .pre-icon.trophy::before {
+  content: "♕";
+  color: #475569;
+}
+
+.search-summary .pre-icon.tick::before {
+  content: "✓";
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #22c55e;
+  border-radius: 999px;
+  color: #16a34a;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
