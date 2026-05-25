@@ -109,7 +109,7 @@ h2 {
 }
 
 .prompt-section .prompt::before {
-  content: "▱";
+  content: "✎";
   display: grid;
   width: 38px;
   height: 38px;
@@ -255,10 +255,26 @@ h2 {
     0 1px 0 rgba(255, 255, 255, 0.9) inset;
 }
 
+.model-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.model-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
 .model-icon {
-  grid-column: 1;
   width: 48px;
   height: 48px;
+  flex: none;
   border-radius: 999px;
   object-fit: contain;
   background: #f8fafc;
@@ -266,17 +282,22 @@ h2 {
 }
 
 .model-card h4 {
-  grid-column: 1 / -1;
-  margin: -44px 108px 18px 62px;
+  margin: 0;
   color: #111827;
   font-size: 1.3rem;
   line-height: 1.2;
 }
 
+.model-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .winner,
 .json-pass {
-  position: absolute;
-  top: 24px;
+  position: static;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -286,10 +307,10 @@ h2 {
   font-size: 0.82rem;
   font-weight: 800;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .winner {
-  right: 136px;
   background: linear-gradient(135deg, #0ea5a8, #14b8a6);
   color: white;
   box-shadow: 0 8px 18px rgba(14, 165, 168, 0.24);
@@ -300,8 +321,9 @@ h2 {
   font-size: 0.82rem;
 }
 
-.json-pass {
-  right: 20px;
+.json-pass.pass {
+  background: #dcfce7;
+  color: #15803d;
 }
 
 .json-pass.pass {
@@ -361,24 +383,10 @@ h2 {
   word-break: break-word;
 }
 
-.model-output::selection {
-  background: rgba(20, 184, 166, 0.36);
-}
-
-.metric {
-  min-width: 0;
-  border: 1px solid #e0e7ef;
-  border-radius: 11px;
-  padding: 13px 12px 14px;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.035);
-}
-
 .pre-icon-small {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 12px;
   color: #475569;
   font-size: 0.74rem;
   font-weight: 700;
@@ -617,4 +625,8 @@ h2 {
   color: #16a34a;
   font-size: 0.72rem;
   font-weight: 900;
+}
+
+.margin-bottom-12 {
+  margin-bottom: 12px;
 }
