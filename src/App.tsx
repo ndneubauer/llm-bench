@@ -1,68 +1,50 @@
-import { ModelList } from "./ModelList";
+import * as React from "react";
+import { ModelList } from "./components/ModelList";
 import "./App.css";
-
-const title = "LLM Bench";
-const models = [
-  {
-    name: "Gemma 4",
-    icon: "gemma4.png",
-    isWinner: true,
-    jsonPass: true,
-    output: `{
-  "name": "Acme Corporation",
-  "invoice": "INV-2025-0421",
-  "total": 1299.50
-}`,
-    score: 0.96,
-    scoreRanking: "Excellent",
-    scoreRankingTier: "High",
-    latency: 1.28,
-    latencyRanking: "Fast",
-    latencyRankingTier: "High",
-    tokensPerSecond: 121.4,
-    tpsRanking: "Very fast",
-    tpsRankingTier: "High",
-  },
-  {
-    name: "Qwen 3.5 27B",
-    icon: "qwen3.5_27b.png",
-    isWinner: false,
-    jsonPass: true,
-    output: `{
-  "name": "Acme Corporation",
-  "invoice": "INV-2025-0421",
-  "total": 1299.50
-}`,
-    score: 0.89,
-    scoreRanking: "Good",
-    scoreRankingTier: "High",
-    latency: 2.34,
-    latencyRanking: "Moderate",
-    latencyRankingTier: "Medium",
-    tokensPerSecond: 78.6,
-    tpsRanking: "Good",
-    tpsRankingTier: "High",
-  },
-  {
-    name: "gpt-oss-20b",
-    icon: "gpt-oss-20b.png",
-    isWinner: false,
-    jsonPass: false,
-    output:
-      "Customer: Acme Corporation\nInvoice: INV-2025-0421\nTotal: $1299.50\n\nThanks!",
-    score: 0.32,
-    scoreRanking: "Poor",
-    scoreRankingTier: "Low",
-    latency: 1.87,
-    latencyRanking: "Fast",
-    latencyRankingTier: "High",
-    tokensPerSecond: 95.3,
-    tpsRanking: "Good",
-    tpsRankingTier: "High",
-  },
-];
+import { FilterPanel } from "./components/FilterPanel";
+import { models } from "./models";
 
 function App() {
+  const title = "LLM Bench";
+
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [modelFilter, setModelFilter] = React.useState("");
+  const [jsonPassFilter, setJsonPassFilter] = React.useState("");
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleModelFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setModelFilter(event.target.value);
+  };
+
+  const handleJsonPassFilter = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setJsonPassFilter(event.target.value);
+  };
+
+  const handleClearFilters = () => {
+    setSearchTerm("");
+    setModelFilter("");
+    setJsonPassFilter("");
+  };
+
+  const searchedModels = models.filter((model) => {
+    const matchesSearch =
+      model.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      model.output.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesModelFilter = modelFilter
+      ? model.name.toLowerCase() === modelFilter.toLowerCase()
+      : true;
+    const matchesJsonPassFilter = jsonPassFilter
+      ? model.jsonPass.toString() === jsonPassFilter
+      : true;
+
+    return matchesSearch && matchesModelFilter && matchesJsonPassFilter;
+  });
+
   return (
     <div>
       <h1>{title}</h1>
@@ -80,7 +62,16 @@ function App() {
           text below. Return valid JSON only with keys: name, invoice, total.
         </p>
       </div>
-      <ModelList models={models} />
+      <FilterPanel
+        onSearch={handleSearch}
+        onModelFilter={handleModelFilter}
+        modelFilter={modelFilter}
+        onJsonPassFilter={handleJsonPassFilter}
+        jsonPassFilter={jsonPassFilter}
+        onClearFilters={handleClearFilters}
+        models={models}
+      />
+      <ModelList models={searchedModels} modelFilter={modelFilter} />
       <div className="pre-icon-tiny disclaimer">
         All tests run locally on your machine.
       </div>

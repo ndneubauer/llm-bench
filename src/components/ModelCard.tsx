@@ -1,4 +1,5 @@
-export function ModelCard(model: any) {
+export function ModelCard(props: any) {
+  const model = props.model;
   return (
     <div className="model-card">
       <img
