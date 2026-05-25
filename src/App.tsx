@@ -8,10 +8,12 @@ import { SearchSummary } from "./components/SearchSummary";
 
 function App() {
   const title = "LLM Bench";
+  const sortOptions = ["highest-score", "lowest-latency", "fastest-tps"];
 
   const [searchTerm, setSearchTerm] = React.useState("");
   const [modelFilter, setModelFilter] = React.useState("");
   const [jsonPassFilter, setJsonPassFilter] = React.useState("");
+  const [sortOption, setSortOption] = React.useState(sortOptions[0]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -27,25 +29,43 @@ function App() {
     setJsonPassFilter(event.target.value);
   };
 
+  const handleSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOption(event.target.value);
+  };
+
   const handleClearFilters = () => {
     setSearchTerm("");
     setModelFilter("");
     setJsonPassFilter("");
+    setSortOption(sortOptions[0]);
   };
 
-  const searchedModels = models.filter((model) => {
-    const matchesSearch =
-      model.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      model.output.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesModelFilter = modelFilter
-      ? model.name.toLowerCase() === modelFilter.toLowerCase()
-      : true;
-    const matchesJsonPassFilter = jsonPassFilter
-      ? model.jsonPass.toString() === jsonPassFilter
-      : true;
+  const searchedModels = models
+    .filter((model) => {
+      const matchesSearch =
+        model.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        model.output.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesModelFilter = modelFilter
+        ? model.name.toLowerCase() === modelFilter.toLowerCase()
+        : true;
+      const matchesJsonPassFilter = jsonPassFilter
+        ? model.jsonPass.toString() === jsonPassFilter
+        : true;
 
-    return matchesSearch && matchesModelFilter && matchesJsonPassFilter;
-  });
+      return matchesSearch && matchesModelFilter && matchesJsonPassFilter;
+    })
+    .sort((a, b) => {
+      if (sortOption === "highest-score") {
+        return b.score - a.score;
+      }
+      if (sortOption === "lowest-latency") {
+        return a.latency - b.latency;
+      }
+      if (sortOption === "fastest-tps") {
+        return b.tokensPerSecond - a.tokensPerSecond;
+      }
+      return 0;
+    });
 
   return (
     <div>
@@ -71,6 +91,8 @@ function App() {
         onJsonPassFilter={handleJsonPassFilter}
         jsonPassFilter={jsonPassFilter}
         onClearFilters={handleClearFilters}
+        onSortChange={handleSort}
+        sortOption={sortOption}
         models={models}
       />
       <SearchSummary

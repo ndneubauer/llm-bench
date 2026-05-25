@@ -167,6 +167,7 @@ h2 {
     minmax(220px, 1fr)
     minmax(180px, 240px)
     minmax(180px, 240px)
+    minmax(180px, 240px)
     auto;
   gap: 1rem;
   align-items: center;
@@ -181,6 +182,7 @@ h2 {
 .search-input,
 .model-select,
 .json-pass-select,
+.sort-select,
 .apply-button {
   min-height: 3.1rem;
   border: 1px solid #d3dce8;
@@ -192,7 +194,8 @@ h2 {
 
 .search-input,
 .model-select,
-.json-pass-select {
+.json-pass-select,
+.sort-select {
   width: 100%;
   padding: 0 0.95rem;
 }
@@ -203,13 +206,15 @@ h2 {
 
 .search-input:focus,
 .model-select:focus,
-.json-pass-select:focus {
+.json-pass-select:focus,
+.sort-select:focus {
   border-color: #0097a7;
   outline: 3px solid rgb(0 151 167 / 0.16);
 }
 
 .model-select,
-.json-pass-select {
+.json-pass-select,
+.sort-select {
   cursor: pointer;
 }
 

@@ -36,6 +36,21 @@ export function FilterPanel(props: any) {
           Failed
         </option>
       </select>
+      <select
+        className="sort-select"
+        onChange={props.onSortChange}
+        value={props.sortOption}
+      >
+        <option key="highest-score" value="highest-score">
+          Sort by: Highest score
+        </option>
+        <option key="lowest-latency" value="lowest-latency">
+          Sort by: Lowest latency
+        </option>
+        <option key="fastest-tps" value="fastest-tps">
+          Sort by: Fastest tokens/sec
+        </option>
+      </select>
       <input
         type="button"
         value="Clear filters"
