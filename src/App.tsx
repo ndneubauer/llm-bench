@@ -76,7 +76,7 @@ function App() {
       <SearchSummary
         count={searchedModels.length}
         total={models.length}
-        bestScore={Math.max(...searchedModels.map((m) => m.score))}
+        bestScore={Math.max(...searchedModels.map((m) => m.score), 0)}
         jsonPassRate={
           searchedModels.length > 0
             ? Math.round(
