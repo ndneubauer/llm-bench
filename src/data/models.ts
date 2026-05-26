@@ -1,4 +1,6 @@
-export const models = [
+import type { Model } from "../types/model";
+
+export const models: Model[] = [
   {
     name: "Gemma 4",
     icon: "gemma4.png",

@@ -2,7 +2,7 @@ import * as React from "react";
 import { ModelList } from "./components/ModelList";
 import "./App.css";
 import { FilterPanel } from "./components/FilterPanel";
-import { models } from "./models";
+import { models } from "./data/models";
 import { EmptyState } from "./components/EmptyState";
 import { SearchSummary } from "./components/SearchSummary";
 
@@ -112,7 +112,7 @@ function App() {
       {searchedModels.length === 0 ? (
         <EmptyState />
       ) : (
-        <ModelList models={searchedModels} modelFilter={modelFilter} />
+        <ModelList models={searchedModels} />
       )}
       <div className="pre-icon-tiny disclaimer">
         All tests run locally on your machine.

@@ -1,12 +1,16 @@
+import type { Model } from "../types/model";
 import { ModelCard } from "./ModelCard";
 
-export function ModelList(props: any) {
-  const models = props.models;
-  return (
-    <div className="model-list">
-      {models.map((model: any) => (
-        <ModelCard key={model.name} model={model} />
-      ))}
-    </div>
-  );
-}
+export type ModelListProps = {
+  models: Model[];
+};
+
+export const ModelList = ({ models }: ModelListProps) => (
+  <div className="model-list">
+    {models.map((model) => (
+      <ModelCard key={model.name} {...model} />
+    ))}
+  </div>
+);
+
+export default ModelList;
