@@ -771,6 +771,7 @@ h2 {
   display: block;
   font-size: 1.2rem;
   line-height: 1;
+  margin-top: 0.5rem;
 }
 
 .run-card .pre-icon.bracket {
