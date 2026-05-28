@@ -7,6 +7,14 @@ export const runs: Run[] = [
     subtitle: "Structured output",
     summary:
       "Extract the customer name, invoice number, and total amount from the text below. Return valid JSON only with keys: name, invoice, total.",
+    originalPrompt: `Extract the customer name, invoice number, and total amount from the text below. Return valid JSON only with keys: name, invoice, total.
+
+Text:
+Customer: Acme Corporation
+Invoice: INV-2025-0421
+Total: $1299.50
+
+Thanks!`,
     icon: "bracket",
     runs: [
       {
@@ -17,10 +25,10 @@ export const runs: Run[] = [
         isWinner: true,
         jsonPass: true,
         output: `{
-      "name": "Acme Corporation",
-      "invoice": "INV-2025-0421",
-      "total": 1299.50
-    }`,
+  "name": "Acme Corporation",
+  "invoice": "INV-2025-0421",
+  "total": 1299.50
+}`,
         score: 0.96,
         scoreRanking: "Excellent",
         scoreRankingTier: "High",
@@ -39,10 +47,10 @@ export const runs: Run[] = [
         isWinner: false,
         jsonPass: true,
         output: `{
-      "name": "Acme Corporation",
-      "invoice": "INV-2025-0421",
-      "total": 1299.50
-    }`,
+  "name": "Acme Corporation",
+  "invoice": "INV-2025-0421",
+  "total": 1299.50
+}`,
         score: 0.89,
         scoreRanking: "Good",
         scoreRankingTier: "High",
@@ -80,6 +88,9 @@ export const runs: Run[] = [
     subtitle: "Evaluation",
     summary:
       "Ability to accurately summarise content without introducing misinformation or hallucinations.",
+    originalPrompt: `Summarise the following article while ensuring that all information is accurate and faithful to the original content. Do not include any information that is not present in the original text.
+
+Article: `,
     icon: "list",
     runs: [],
   },
@@ -89,6 +100,9 @@ export const runs: Run[] = [
     subtitle: "Coding",
     summary:
       "Assess coding ability by generating code to solve a problem and evaluating correctness, efficiency, and style.",
+    originalPrompt: `Generate Python code to solve the following problem:
+
+Problem: `,
     icon: "markup",
     runs: [
       {

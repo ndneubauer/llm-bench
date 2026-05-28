@@ -7,6 +7,7 @@ import { EmptyState } from "./components/EmptyState";
 import { SearchSummary } from "./components/SearchSummary";
 import { RunSelectionPanel } from "./components/RunSelectionPanel";
 import { models } from "./data/models";
+import { PromptPanel } from "./components/PromptPanel";
 
 function App() {
   const title = "LLM Bench";
@@ -88,12 +89,7 @@ function App() {
         selectedId={selectedRunId}
         onRunSelect={handleRunSelect}
       />
-      <div className="prompt-section">
-        <h3 className="pre-icon prompt">Prompt</h3>
-        <span className="external-link">View original text</span>
-        <h3>{selectedRun.benchmarkName}</h3>
-        <p>{selectedRun.summary}</p>
-      </div>
+      <PromptPanel selectedRun={selectedRun} />
       <FilterPanel
         onSearch={handleSearch}
         onModelFilter={handleModelFilter}

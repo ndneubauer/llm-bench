@@ -87,6 +87,8 @@ h2 {
   line-height: 1.65;
 }
 
+/* Prompt panel */
+
 .prompt-section {
   position: relative;
   margin: 2rem 0 1rem;
@@ -100,12 +102,13 @@ h2 {
 }
 
 .prompt-section .prompt {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 14px;
   margin-bottom: 24px;
   color: #111827;
   font-size: 1.25rem;
+  line-height: 1.2;
 }
 
 .prompt-section .prompt::before {
@@ -118,8 +121,9 @@ h2 {
   border-radius: 999px;
   background: #0ea5a8;
   color: white;
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 900;
+  line-height: 1;
   box-shadow: 0 8px 20px rgba(14, 165, 168, 0.24);
 }
 
@@ -137,8 +141,23 @@ h2 {
   background: #ffffff;
   font-size: 0.9rem;
   font-weight: 700;
+  line-height: 1;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
   cursor: pointer;
+  user-select: none;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.prompt-section .external-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(14, 127, 143, 0.42);
+  background: #f8feff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.075);
 }
 
 .prompt-section .external-link::after {
@@ -160,6 +179,99 @@ h2 {
   font-size: 1rem;
   line-height: 1.55;
 }
+
+/* Expanded original text panel */
+
+.original-text {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon heading"
+    "content content";
+  column-gap: 0.75rem;
+  row-gap: 0.8rem;
+  margin-top: 1.35rem;
+  padding: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.34);
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(240, 253, 250, 0.72),
+    rgba(248, 250, 252, 0.94)
+  );
+  box-shadow:
+    0 10px 28px rgba(15, 23, 42, 0.045),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.original-text .pre-icon.notepad {
+  grid-area: icon;
+  display: inline-grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-top: 0.05rem;
+  border-radius: 0;
+  background: transparent;
+  color: #475569;
+  font-size: 0;
+  line-height: 1;
+}
+
+.original-text .pre-icon.notepad::before {
+  content: "▤";
+  display: block;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1;
+  transform: none;
+}
+
+.original-text-heading {
+  grid-area: heading;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  color: #94a3b8;
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.original-text-heading span:first-child {
+  color: #111827;
+  font-weight: 850;
+}
+
+.original-text-heading span:last-child {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.original-text-content {
+  grid-area: content;
+  margin: 0;
+  padding: 0.9rem 1rem;
+  overflow: auto;
+  border: 1px solid rgba(14, 165, 168, 0.22);
+  border-radius: 10px;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(20, 184, 166, 0.08),
+      transparent 18rem
+    ),
+    rgba(255, 255, 255, 0.76);
+  color: #111827;
+  font-family:
+    "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Filters */
 
 .filter-panel {
   display: grid;
@@ -230,6 +342,8 @@ h2 {
   color: #008fa3;
 }
 
+/* Search summary */
+
 .search-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -273,7 +387,6 @@ h2 {
   font-weight: 850;
 }
 
-/* Search summary icons: deliberately not using the large run-card icon circles */
 .search-summary .pre-icon {
   display: inline-grid;
   place-items: center;
@@ -333,6 +446,8 @@ h2 {
   font-weight: 900;
   transform: translateY(-1px);
 }
+
+/* Model cards */
 
 .model-list {
   display: grid;
@@ -578,6 +693,8 @@ h2 {
   margin-bottom: 12px;
 }
 
+/* Run selector */
+
 .runs-panel {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -638,7 +755,6 @@ h2 {
   line-height: 1;
 }
 
-/* Run card icons */
 .run-card .pre-icon {
   display: grid;
   place-items: center;
@@ -655,7 +771,6 @@ h2 {
   display: block;
   font-size: 1.2rem;
   line-height: 1;
-  margin-top: 0.5rem;
 }
 
 .run-card .pre-icon.bracket {
@@ -715,6 +830,8 @@ h2 {
   color: #2f8f95;
   font-weight: 650;
 }
+
+/* Responsive */
 
 @media (max-width: 1120px) {
   #root {
@@ -794,6 +911,28 @@ h2 {
   .prompt-section .external-link {
     position: static;
     margin-bottom: 20px;
+  }
+
+  .original-text {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "heading"
+      "content";
+    padding: 0.9rem;
+  }
+
+  .original-text .pre-icon.notepad {
+    display: none;
+  }
+
+  .original-text-heading {
+    gap: 0.45rem;
+    font-size: 0.82rem;
+  }
+
+  .original-text-content {
+    padding: 0.8rem;
+    font-size: 0.82rem;
   }
 
   .filter-panel {

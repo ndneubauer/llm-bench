@@ -5,6 +5,7 @@ export type Run = {
   benchmarkName: string;
   subtitle: string;
   summary: string;
+  originalPrompt: string;
   icon: string;
   runs: ModelRun[];
 };
