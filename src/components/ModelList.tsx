@@ -1,14 +1,14 @@
-import type { Model } from "../types/model";
+import type { ModelRun } from "../types/model-run";
 import { ModelCard } from "./ModelCard";
 
 export type ModelListProps = {
-  models: Model[];
+  runs: ModelRun[];
 };
 
-export const ModelList = ({ models }: ModelListProps) => (
+export const ModelList = ({ runs }: ModelListProps) => (
   <div className="model-list">
-    {models.map((model) => (
-      <ModelCard key={model.name} {...model} />
+    {runs.map((run) => (
+      <ModelCard key={run.model.name} {...run} />
     ))}
   </div>
 );

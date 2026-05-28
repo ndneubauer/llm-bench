@@ -1,18 +1,49 @@
+import type { ModelRun } from "../types/model-run";
+
+type SearchSummaryProps = {
+  filteredModels: ModelRun[];
+  originalModels: ModelRun[];
+};
+
 export const SearchSummary = ({
-  count,
-  total,
-  bestScore,
-  jsonPassRate,
-}: any) => (
+  filteredModels,
+  originalModels,
+}: SearchSummaryProps) => (
   <div className="search-summary">
-    <span className="pre-icon list">
-      Showing <strong>{count}</strong> of {total} results
+    <span className="summary-item">
+      <span className="pre-icon list" />
+      <span>
+        Showing <strong>{filteredModels.length}</strong> of{" "}
+        {originalModels.length} results
+      </span>
     </span>
-    <span className="pre-icon trophy">
-      Best score: <strong>{bestScore}</strong>
+    <span className="summary-item">
+      <span className="pre-icon trophy" />
+      <span>
+        Best score:{" "}
+        <strong>
+          {Math.max(
+            ...filteredModels.map((m: { score: number }) => m.score),
+            0,
+          )}
+        </strong>
+      </span>
     </span>
-    <span className="pre-icon tick">
-      JSON pass rate: <strong>{jsonPassRate}%</strong>
+    <span className="summary-item">
+      <span className="pre-icon tick" />
+      <span>
+        JSON pass rate:{" "}
+        <strong>
+          {filteredModels.length > 0
+            ? Math.round(
+                (filteredModels.filter((m) => m.jsonPass).length /
+                  filteredModels.length) *
+                  100,
+              )
+            : 0}
+          %
+        </strong>
+      </span>
     </span>
   </div>
 );
