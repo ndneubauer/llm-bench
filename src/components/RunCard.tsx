@@ -1,13 +1,13 @@
 export const RunCard = ({
   selected,
   benchmarkName,
-  summary,
+  subtitle,
   icon,
   onClick,
 }: {
   selected: boolean;
   benchmarkName: string;
-  summary: string;
+  subtitle: string;
   icon: string;
   onClick: () => void;
 }) => (
@@ -20,7 +20,7 @@ export const RunCard = ({
     <div className={`pre-icon ${icon}`}>{icon}</div>
     <div className="details">
       <h4>{benchmarkName}</h4>
-      <p>{summary}</p>
+      <p>{subtitle}</p>
     </div>
   </div>
 );

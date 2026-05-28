@@ -18,7 +18,7 @@ export const RunSelectionPanel = ({
         key={run.id}
         selected={run.id === selectedId}
         benchmarkName={run.benchmarkName}
-        summary={run.summary}
+        subtitle={run.subtitle}
         icon={run.icon}
         onClick={() => onRunSelect(run.id)}
       />

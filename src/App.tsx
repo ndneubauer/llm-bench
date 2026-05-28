@@ -91,11 +91,8 @@ function App() {
       <div className="prompt-section">
         <h3 className="pre-icon prompt">Prompt</h3>
         <span className="external-link">View original text</span>
-        <h3>JSON extraction test</h3>
-        <p>
-          Extract the customer name, invoice number, and total amount from the
-          text below. Return valid JSON only with keys: name, invoice, total.
-        </p>
+        <h3>{selectedRun.benchmarkName}</h3>
+        <p>{selectedRun.summary}</p>
       </div>
       <FilterPanel
         onSearch={handleSearch}

@@ -3,8 +3,10 @@ import type { Run } from "../types/run";
 export const runs: Run[] = [
   {
     id: 1,
-    benchmarkName: "Json Extraction Test",
-    summary: "Structured output",
+    benchmarkName: "JSON Extraction Test",
+    subtitle: "Structured output",
+    summary:
+      "Extract the customer name, invoice number, and total amount from the text below. Return valid JSON only with keys: name, invoice, total.",
     icon: "bracket",
     runs: [
       {
@@ -75,14 +77,18 @@ export const runs: Run[] = [
   {
     id: 2,
     benchmarkName: "Summarisation Faithfulness",
-    summary: "Evaluation",
+    subtitle: "Evaluation",
+    summary:
+      "Ability to accurately summarise content without introducing misinformation or hallucinations.",
     icon: "list",
     runs: [],
   },
   {
     id: 3,
     benchmarkName: "Code Generation",
-    summary: "Coding",
+    subtitle: "Coding",
+    summary:
+      "Assess coding ability by generating code to solve a problem and evaluating correctness, efficiency, and style.",
     icon: "markup",
     runs: [
       {
